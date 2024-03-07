@@ -11,8 +11,8 @@ Please Note that only KVM and Webterminal functionality is implemented.
 2) Before the first boot edit /boot/armbianEnv.txt on the SD card and add: `overlays=bs bs@1.3ghz`  
 3) Boot into armbian and login with ssh, username: `root` passwd: `1234`  
 4) Change the password for root and right after that press `CTRL + C` to drop to the shell  
-5) Please also see the file [pico_wiring_diagram.png](https://github.com/ich777/pikvm-rockpi-s/blob/main/rockpi-s_wiring_diagram.png) on how to set up the connection to the Rasperry Pi Pico  
-(To flash your Pico download [this](https://github.com/ich777/pikvm-rockpi-s/raw/main/pi-pico-fw/pico-hid.uf2) file, press and hold the button on the Pico while connecting to your PC and place the file in the Picos Disk that will appear, safely eject the Pico and disconnect it from your PC)  
+5) Please also see the file [pico_wiring_diagram.png](https://github.com/ich777/pikvm-rockpi-s/blob/master/rockpi-s_wiring_diagram.png) on how to set up the connection to the Rasperry Pi Pico  
+(To flash your Pico download [this](https://github.com/ich777/pikvm-rockpi-s/raw/master/pi-pico-fw/pico-hid.uf2) file, press and hold the button on the Pico while connecting to your PC and place the file in the Picos Disk that will appear, safely eject the Pico and disconnect it from your PC)  
 6) Follow the script below  
 7) Connect through the browser to the IP from your RockPi and login with Username: `admin` Password: `admin`
   
@@ -70,7 +70,7 @@ make install
 ldconfig
 
 # Get base packages from PiKVM and extract all necessary files
-wget -O pikvm.tar.xz https://github.com/ich777/pikvm-rockpi-s/raw/main/sourcepkgs/kvmd-3.296-1-any.pkg.tar.xz
+wget -O pikvm.tar.xz https://github.com/ich777/pikvm-rockpi-s/raw/master/sourcepkgs/kvmd-3.296-1-any.pkg.tar.xz
 tar -C /tmp/pikvm -xvf pikvm.tar.xz
 cp -R /tmp/pikvm/usr/bin/* /usr/bin/
 cp -R /tmp/pikvm/usr/lib/python3.11/site-packages/kvmd* /usr/lib/python3.11/
@@ -79,46 +79,46 @@ cp -R /tmp/pikvm/var/* /var/
 cp -R /tmp/pikvm/etc/* /etc/
 
 # Get ustreamer package and extract it
-wget -O ustreamer.tar.xz https://github.com/ich777/pikvm-rockpi-s/raw/main/sourcepkgs/ustreamer-5.48-3-armv7h.pkg.tar.xz
+wget -O ustreamer.tar.xz https://github.com/ich777/pikvm-rockpi-s/raw/master/sourcepkgs/ustreamer-5.48-3-armv7h.pkg.tar.xz
 tar -C /tmp/pikvm -xvf ustreamer.tar.xz
 cp -R /tmp/pikvm/usr/lib/ustreamer /usr/lib/
 
 # Get python3-ustreamer package and extract it
-wget -O python3-ustreamer.tar.gz https://github.com/ich777/pikvm-rockpi-s/raw/main/sourcepkgs/python3-ustreamer-5.37.tar.gz
+wget -O python3-ustreamer.tar.gz https://github.com/ich777/pikvm-rockpi-s/raw/master/sourcepkgs/python3-ustreamer-5.37.tar.gz
 tar -C /usr/lib/python3.11/ -xvf python3-ustreamer.tar.gz
 
 # Grab overlay files for USB Host instead of OTG and enable UART2
-wget -O /tmp/pikvm/rk3308-usb20-host.dts https://github.com/ich777/pikvm-rockpi-s/raw/main/rk3308-overlays/rk3308-usb20-host.dts
-wget -O /tmp/pikvm/rk3308-uart2.dts https://github.com/ich777/pikvm-rockpi-s/raw/main/rk3308-overlays/rk3308-uart2.dts
+wget -O /tmp/pikvm/rk3308-usb20-host.dts https://github.com/ich777/pikvm-rockpi-s/raw/master/rk3308-overlays/rk3308-usb20-host.dts
+wget -O /tmp/pikvm/rk3308-uart2.dts https://github.com/ich777/pikvm-rockpi-s/raw/master/rk3308-overlays/rk3308-uart2.dts
 armbian-add-overlay /tmp/pikvm/rk3308-usb20-host.dts
 armbian-add-overlay /tmp/pikvm/rk3308-uart2.dts
 
 # Grab systemd services, tempfiles.d and modified version from gpio.py for hid mcu
-wget -O /etc/systemd/system/kvmd.service https://github.com/ich777/pikvm-rockpi-s/raw/main/systemd/kvmd.service
-#wget -O /etc/systemd/system/kvmd-otg.service https://github.com/ich777/pikvm-rockpi-s/raw/main/systemd/kvmd-otg.service
-wget -O /etc/systemd/system/kvmd-janus.service https://github.com/ich777/pikvm-rockpi-s/raw/main/systemd/kvmd-janus.service
-wget -O /etc/systemd/system/kvmd-janus-static.service https://github.com/ich777/pikvm-rockpi-s/raw/main/systemd/kvmd-janus-static.service
-wget -O /etc/systemd/system/kvmd-webterm.service https://github.com/ich777/pikvm-rockpi-s/raw/main/systemd/kvmd-webterm.service
-wget -O /etc/systemd/system/kvmd-ipmi.service https://github.com/ich777/pikvm-rockpi-s/raw/main/systemd/kvmd-ipmi.service
-wget -O /etc/systemd/system/kvmd-vnc.service https://github.com/ich777/pikvm-rockpi-s/raw/main/systemd/kvmd-vnc.service
-wget -O /etc/systemd/system/kvmd-nginx.service https://github.com/ich777/pikvm-rockpi-s/raw/main/systemd/kvmd-nginx.service
-wget -O /usr/lib/tmpfiles.d/kvmd.conf https://github.com/ich777/pikvm-rockpi-s/raw/main/tmpfiles.d/kvmd.conf
-wget -O /usr/lib/python3.11/kvmd/plugins/hid/_mcu/gpio.py https://github.com/ich777/pikvm-rockpi-s/raw/main/mraa/hid/_mcu/gpio.py
-wget -O /usr/lib/python3.11/kvmd/aiogp.py https://github.com/ich777/pikvm-rockpi-s/raw/main/mraa/aiogp.py
+wget -O /etc/systemd/system/kvmd.service https://github.com/ich777/pikvm-rockpi-s/raw/master/systemd/kvmd.service
+#wget -O /etc/systemd/system/kvmd-otg.service https://github.com/ich777/pikvm-rockpi-s/raw/master/systemd/kvmd-otg.service
+wget -O /etc/systemd/system/kvmd-janus.service https://github.com/ich777/pikvm-rockpi-s/raw/master/systemd/kvmd-janus.service
+wget -O /etc/systemd/system/kvmd-janus-static.service https://github.com/ich777/pikvm-rockpi-s/raw/master/systemd/kvmd-janus-static.service
+wget -O /etc/systemd/system/kvmd-webterm.service https://github.com/ich777/pikvm-rockpi-s/raw/master/systemd/kvmd-webterm.service
+wget -O /etc/systemd/system/kvmd-ipmi.service https://github.com/ich777/pikvm-rockpi-s/raw/master/systemd/kvmd-ipmi.service
+wget -O /etc/systemd/system/kvmd-vnc.service https://github.com/ich777/pikvm-rockpi-s/raw/master/systemd/kvmd-vnc.service
+wget -O /etc/systemd/system/kvmd-nginx.service https://github.com/ich777/pikvm-rockpi-s/raw/master/systemd/kvmd-nginx.service
+wget -O /usr/lib/tmpfiles.d/kvmd.conf https://github.com/ich777/pikvm-rockpi-s/raw/master/tmpfiles.d/kvmd.conf
+wget -O /usr/lib/python3.11/kvmd/plugins/hid/_mcu/gpio.py https://github.com/ich777/pikvm-rockpi-s/raw/master/mraa/hid/_mcu/gpio.py
+wget -O /usr/lib/python3.11/kvmd/aiogp.py https://github.com/ich777/pikvm-rockpi-s/raw/master/mraa/aiogp.py
 
 # Disable unnecessary services
 systemctl disable kvmd-webterm kvmd-ipmi kvmd-vnc
 
 # Get custom vcgencmd
-wget -O /usr/bin/vcgencmd https://github.com/ich777/pikvm-rockpi-s/raw/main/vcgencmd
+wget -O /usr/bin/vcgencmd https://github.com/ich777/pikvm-rockpi-s/raw/master/vcgencmd
 chmod +x /usr/bin/vcgencmd
 
 # Get custom kvmd-udev-hdmiusb-check
-wget -O /usr/bin/kvmd-udev-hdmiusb-check https://github.com/ich777/pikvm-rockpi-s/raw/main/bin/kvmd-udev-hdmiusb-check
+wget -O /usr/bin/kvmd-udev-hdmiusb-check https://github.com/ich777/pikvm-rockpi-s/raw/master/bin/kvmd-udev-hdmiusb-check
 chmod +x /usr/bin/kvmd-udev-hdmiusb-check
 
 # Get udev rules and re-trigger
-wget -O /etc/udev/rules.d/99-kvmd.rules https://github.com/ich777/pikvm-rockpi-s/raw/main/udev/v2-hdmiusb-rpi4.rules
+wget -O /etc/udev/rules.d/99-kvmd.rules https://github.com/ich777/pikvm-rockpi-s/raw/master/udev/v2-hdmiusb-rpi4.rules
 udevadm control -R
 udevadm trigger
 
@@ -142,7 +142,7 @@ systemctl enable kvmd-nginx
 sed -i 's/@async_lru.alru_cache(maxsize=1, ttl=5)/@async_lru.alru_cache()/g' /usr/lib/python3.11/kvmd/apps/kvmd/api/export.py
 
 # Get main.yaml
-wget -O /etc/kvmd/main.yaml https://github.com/ich777/pikvm-rockpi-s/raw/main/main.yaml
+wget -O /etc/kvmd/main.yaml https://github.com/ich777/pikvm-rockpi-s/raw/master/main.yaml
 
 # Generate certificates for kvmd
 openssl req -newkey rsa:4096 \
@@ -174,7 +174,7 @@ adduser --disabled-password --gecos "" kvmd --disabled-login
 ### ATX (if you don't need ATX functionality skip the next part):
 
 ```
-wget -O /usr/lib/python3.11/kvmd/plugins/atx/mraa.py https://github.com/ich777/pikvm-rockpi-s/raw/main/mraa/atx/mraa.py
+wget -O /usr/lib/python3.11/kvmd/plugins/atx/mraa.py https://github.com/ich777/pikvm-rockpi-s/raw/master/mraa/atx/mraa.py
 sed -i '/atx:/,+1d' /etc/kvmd/override.yaml
 echo -e "    atx:\n        type: mraa" >> /etc/kvmd/override.yaml
 ```
@@ -184,7 +184,7 @@ echo -e "    atx:\n        type: mraa" >> /etc/kvmd/override.yaml
 ```
 mkdir -p /tmp/pikvm/webterm
 cd /tmp/pikvm/webterm
-wget -O pikvm-webterm.tar.xz https://github.com/ich777/pikvm-rockpi-s/raw/main/sourcepkgs/kvmd-webterm-0.48-1-any.pkg.tar.xz
+wget -O pikvm-webterm.tar.xz https://github.com/ich777/pikvm-rockpi-s/raw/master/sourcepkgs/kvmd-webterm-0.48-1-any.pkg.tar.xz
 tar -C /tmp/pikvm/webterm -xvf pikvm-webterm.tar.xz
 cp -R /tmp/pikvm/webterm/usr/share/* /usr/share/
 wget -O /usr/bin/ttyd https://github.com/tsl0922/ttyd/releases/download/1.7.4/ttyd.aarch64

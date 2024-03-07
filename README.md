@@ -11,7 +11,7 @@ Please Note that only KVM and Webterminal functionality is implemented.
 2) Before the first boot edit /boot/armbianEnv.txt on the SD card and add: `overlays=bs bs@1.3ghz`  
 3) Boot into armbian and login with ssh, username: `root` passwd: `1234`  
 4) Change the password for root and right after that press `CTRL + C` to drop to the shell  
-5) Please also see the file [pico_wiring_diagram.png](https://github.com/ich777/pikvm-rockpi-s/blob/master/rockpi-s_wiring_diagram.png) on how to set up the connection to the Rasperry Pi Pico  
+5) Please also see the file [wiring_diagram.png](https://github.com/ich777/pikvm-rockpi-s/blob/master/rockpi-s_wiring_diagram.png) on how to set up the connection to the Rasperry Pi Pico (and ATX connector)  
 (To flash your Pico download [this](https://github.com/ich777/pikvm-rockpi-s/raw/master/pi-pico-fw/pico-hid.uf2) file, press and hold the button on the Pico while connecting to your PC and place the file in the Picos Disk that will appear, safely eject the Pico and disconnect it from your PC)  
 6) Follow the script below  
 7) Connect through the browser to the IP from your RockPi and login with Username: `admin` Password: `admin`

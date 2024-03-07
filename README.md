@@ -1,5 +1,6 @@
 Source files: https://files.pikvm.org/repos/arch/rpi4/  
-  
+
+**DISCLAIMER:** This project is not related to PiKVM, use at your own risk!  
   
 ### What this is:
 This repository contains everything that you can turn your RockPi S into a PiKVM with HID support with the help from a Raspberry Pi Pico.  

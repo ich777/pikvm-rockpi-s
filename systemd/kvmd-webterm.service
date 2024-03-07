@@ -1,0 +1,25 @@
+[Unit]
+Description=PiKVM - Web terminal (ttyd)
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/root
+Restart=always
+RestartSec=1
+
+# Crutch for UNIX socket perms
+UMask=0117
+
+EnvironmentFile=-/etc/conf.d/kvmd-webterm
+ExecStart=/usr/bin/ttyd \
+		-W \
+		-t disableLeaveAlert=true \
+		--interface=/run/kvmd/ttyd.sock \
+		--port=0 \
+		$KVMD_WEBTERM_ARGS \
+	/bin/bash -c 'echo -ne "\033]0;PiKVM Terminal: `hostname -f` (ttyd)\007"; export TERM=linux; umask 0022; bash'
+
+[Install]
+WantedBy=multi-user.target

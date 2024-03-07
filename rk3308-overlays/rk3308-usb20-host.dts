@@ -1,0 +1,14 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "rockchip,rk3308";
+
+	fragment@0 {
+		target = <&usb20_otg>;
+		__overlay__ {
+			dr_mode = "host";
+			status = "okay";
+		};
+	};
+};

@@ -8,12 +8,12 @@ Please Note that only KVM and Webterminal functionality is implemented.
 **ATTENTION:** By default everything is running as root so please be careful and use this only for home usage or through a safe tunnel if you are using it over the internet!  
   
 ### First Steps:
-1) Download Armbian for your RockPi Sand put on the SD - [Download Mirror](https://github.com/ich777/pikvm-rockpi-s/releases/download/23.11.1_6.1.63/Armbian_23.11.1_Rockpi-s_bookworm_current_6.1.63_minimal.img.xz)  
-2) Before the first boot edit /boot/armbianEnv.txt on the SD card and add: `overlays=bs bs@1.3ghz`  
-3) Boot into armbian and login with ssh, username: `root` passwd: `1234`  
-4) Change the password for root and right after that press `CTRL + C` to drop to the shell  
-5) Please also see the file [wiring_diagram.png](https://github.com/ich777/pikvm-rockpi-s/blob/master/rockpi-s_wiring_diagram.png) on how to set up the connection to the Rasperry Pi Pico (and ATX connector)  
-(To flash your Pico download [this](https://github.com/ich777/pikvm-rockpi-s/raw/master/pi-pico-fw/pico-hid.uf2) file, press and hold the button on the Pico while connecting to your PC and place the file in the Picos Disk that will appear, safely eject the Pico and disconnect it from your PC)  
+1) Flash your Raspberry Pico download [this](https://github.com/ich777/pikvm-rockpi-s/raw/master/pi-pico-fw/pico-hid.uf2) file, press and hold the button on the Pico while connecting to your PC and place the file in the Picos Disk that will appear, safely eject the Pico and disconnect it from your PC)  
+Please also see the file [wiring_diagram.png](https://github.com/ich777/pikvm-rockpi-s/blob/master/rockpi-s_wiring_diagram.png) on how to set up the connection to the Rasperry Pi Pico (and ATX connector)  
+2) Download Armbian for your RockPi Sand put on the SD - [Download Mirror](https://github.com/ich777/pikvm-rockpi-s/releases/download/23.11.1_6.1.63/Armbian_23.11.1_Rockpi-s_bookworm_current_6.1.63_minimal.img.xz)  
+3) Before the first boot edit /boot/armbianEnv.txt on the SD card and add: `overlays=bs bs@1.3ghz`  
+4) Boot into armbian and login with ssh, username: `root` passwd: `1234`  
+5) Change the password for root and right after that press `CTRL + C` to drop to the shell  
 6) Follow the script below  
 7) Connect through the browser to the IP from your RockPi and login with Username: `admin` Password: `admin`
   

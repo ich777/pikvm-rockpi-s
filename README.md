@@ -32,6 +32,9 @@ Please also see the file [wiring_diagram.png](https://github.com/ich777/pikvm-ro
 echo 0 > /sys/class/leds/rockpis:green:power/brightness
 echo 0 > /sys/class/leds/rockpis:blue:user/brightness
 
+# Disable armbian repository
+sed -i 's/^/#/' /etc/apt/sources.list.d/armbian.list
+
 # Update packages
 apt-get update
 
@@ -207,10 +210,6 @@ systemctl enable kvmd
 # is the prrefered methode for this installation method
 #systemctl enable kvmd-janus
 systemctl enable kvmd-janus-static
-
-# Disable armbian repository
-sed -i 's/^/#/' /etc/apt/sources.list.d/armbian.list
-rm -rf /var/lib/apt/lists/*
 
 # Reboot
 reboot
